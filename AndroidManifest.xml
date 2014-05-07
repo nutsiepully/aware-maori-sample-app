@@ -11,5 +11,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:exported="true" android:name="Plugin" android:label="Maori Sample App"></service>
+
+        <uses-permission android:name="com.aware.READ_CONTEXT_DATA"/>
+        <uses-permission android:name="com.aware.WRITE_CONTEXT_DATA"/>
     </application>
 </manifest>
