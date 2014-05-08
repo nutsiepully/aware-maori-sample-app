@@ -1,4 +1,4 @@
-package io.pulkit.maori;
+package com.aware.plugin.maori;
 
 import android.app.Activity;
 import android.os.Bundle;
