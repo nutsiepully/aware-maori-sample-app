@@ -171,7 +171,9 @@ public class Plugin extends Aware_Sensor {
 
     protected AbstractClassifier getClassifier() {
         if (atmosphereClassifier == null) {
-            atmosphereClassifier = new Maori().getClassifier("barometer-model.model");
+            Maori maori = new Maori(getApplicationContext());
+            maori.refresh();
+            atmosphereClassifier = maori.getClassifier("barometer-model.model");
         }
         return atmosphereClassifier;
     }
