@@ -99,7 +99,7 @@ public class Plugin extends Aware_Sensor {
         super.onCreate();
 
         //Logcat label
-        TAG = "maori-sample-app";
+        TAG = "maori: plugin";
 
         //Use the users' debug preference from AWARE
         DEBUG = Aware.getSetting(getContentResolver(), Aware_Preferences.DEBUG_FLAG).equals("true");
