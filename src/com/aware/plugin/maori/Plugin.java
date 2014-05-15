@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.StrictMode;
 import android.util.Log;
 
 import com.aware.Aware;
@@ -93,6 +94,7 @@ public class Plugin extends Aware_Sensor {
 
     private Instances dataset;
     private AbstractClassifier atmosphereClassifier;
+    private Maori maori;
 
     @Override
     public void onCreate() {
@@ -100,6 +102,12 @@ public class Plugin extends Aware_Sensor {
 
         //Logcat label
         TAG = "maori: plugin";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        maori = new Maori(getApplicationContext());
+        maori.refresh();
 
         //Use the users' debug preference from AWARE
         DEBUG = Aware.getSetting(getContentResolver(), Aware_Preferences.DEBUG_FLAG).equals("true");
@@ -171,8 +179,7 @@ public class Plugin extends Aware_Sensor {
 
     protected AbstractClassifier getClassifier() {
         if (atmosphereClassifier == null) {
-            Maori maori = new Maori(getApplicationContext());
-            maori.refresh();
+            Log.d(TAG, maori.getClass().toString());
             atmosphereClassifier = maori.getClassifier("barometer-model.model");
         }
         return atmosphereClassifier;
